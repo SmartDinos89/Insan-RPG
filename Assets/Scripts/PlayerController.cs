@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
     }
 
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
         vertical = Input.GetAxisRaw("Vertical"); // -1 is down
 
+        
 
         move = new Vector2(horizontal, vertical).normalized;
     }
@@ -32,5 +34,15 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         body.velocity = move * runSpeed;
+
+        if(move != Vector2.zero)
+        {
+            animator.SetFloat("horizontal", horizontal);
+            animator.SetFloat("vertical", vertical);
+            animator.SetBool("moving", true);
+        }else
+        {
+            animator.SetBool("moving", false);
+        }
     }
 }
