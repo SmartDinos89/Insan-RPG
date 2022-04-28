@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     float horizontal;
     float vertical;
+    
+    [HideInInspector]public bool canMove;
 
     Vector2 move;
 
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        canMove = true;
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
     }
@@ -27,8 +30,13 @@ public class PlayerController : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical"); // -1 is down
 
         
-
+        
         move = new Vector2(horizontal, vertical).normalized;
+
+        if(!canMove)
+        {
+            move = Vector2.zero;
+        }
     }
 
     void FixedUpdate()
