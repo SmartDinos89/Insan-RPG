@@ -1,1 +1,0 @@
-Now is not the time to sleep, its the middle of the day.
