@@ -5,6 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] private DialogueUi dialogueUi;
+
+    public DialogueUi DialogueUi => dialogueUi;
+
+    public IInteractable Interactable { get; set; }
+
     Rigidbody2D body;
     Animator animator;
     float horizontal;
@@ -33,9 +40,14 @@ public class PlayerController : MonoBehaviour
         
         move = new Vector2(horizontal, vertical).normalized;
 
-        if(!canMove)
+        if(dialogueUi.isOpen)
         {
             move = Vector2.zero;
+        }
+
+        if(Input.GetButtonDown("Interact"))
+        {
+            Interactable?.Interact(this);
         }
     }
 
