@@ -10,18 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30febffadc7c1e645a644cbd5cfd7e36, type: 3}
-  m_Name: Test
+  m_Name: Witch
   m_EditorClassIdentifier: 
   dialogue:
-  - 'This is the first text .
-
-    And this is the second line.'
+  - 'Hey, '
   - 'Here is some more text in another page.
 
     How about you chose, yes or no?'
-  responses:
-  - responseText: Yes
-    dialogueObject: {fileID: 11400000, guid: 037d87acb5e40504fbfe21bf27cc75dc, type: 2}
-  - responseText: Repeat
-    dialogueObject: {fileID: 11400000}
+  responses: []
   NPC_name: Witch

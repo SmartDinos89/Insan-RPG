@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         
         move = new Vector2(horizontal, vertical).normalized;
 
-        if(dialogueUi.isOpen)
+        if(dialogueUi.isOpen || !canMove)
         {
             move = Vector2.zero;
         }

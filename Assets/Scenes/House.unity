@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 144935530172041635, guid: 5bf33e41043c0284d82caa6e53912cff, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 437124683}
     - target: {fileID: 144935530172041635, guid: 5bf33e41043c0284d82caa6e53912cff, type: 3}
       propertyPath: sceneName
       value: Outside
@@ -2530,7 +2530,7 @@ PrefabInstance:
     - target: {fileID: 144935530172041635, guid: 5bf33e41043c0284d82caa6e53912cff, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 437124683}
     - target: {fileID: 144935530172041646, guid: 5bf33e41043c0284d82caa6e53912cff, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -12793,7 +12793,7 @@ PrefabInstance:
     - target: {fileID: 144935530172041635, guid: 5bf33e41043c0284d82caa6e53912cff, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 437124683}
     - target: {fileID: 144935530172041646, guid: 5bf33e41043c0284d82caa6e53912cff, type: 3}
       propertyPath: m_RootOrder
       value: 0
