@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private DialogueUi dialogueUi;
+    private HealthManager healthManager;
 
     public DialogueUi DialogueUi => dialogueUi;
 
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        healthManager = GetComponent<HealthManager>();
         canMove = true;
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();

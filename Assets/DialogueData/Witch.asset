@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Witch
   m_EditorClassIdentifier: 
   dialogue:
-  - 'Hey, '
-  - 'Here is some more text in another page.
-
-    How about you chose, yes or no?'
+  - Hey,
+  - Defenitely DO. NOT. go into the cave that would be a HORRIBLE idea
   responses: []
   NPC_name: Witch

@@ -34,10 +34,13 @@ public class DialogueUi : MonoBehaviour
         for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
             string dialogue = dialogueObject.Dialogue[i];
-            yield return typewritterEffect.Run(dialogue, text);
 
-            if(i == dialogueObject.Dialogue.Length -1 && dialogueObject.HasResponses) break;
+            yield return RunTypingEffect(dialogue);
+            text.text = dialogue;
 
+            if (i == dialogueObject.Dialogue.Length -1 && dialogueObject.HasResponses) break;
+
+            yield return null;
             yield return new WaitUntil(() => Input.GetButtonDown("Submit"));
         }
 
@@ -49,6 +52,19 @@ public class DialogueUi : MonoBehaviour
             CloseDialogueBox();
         }
     }
+
+    private IEnumerator RunTypingEffect(string dialogue)
+    {
+        typewritterEffect.Run(dialogue, text);
+        while (typewritterEffect.isRunning)
+        {
+            yield return null;
+
+            if (Input.GetButtonDown("Submit")) { typewritterEffect.Stop();  }
+        }
+    }
+
+
 
     public void CloseDialogueBox()
     {
