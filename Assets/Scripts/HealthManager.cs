@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int currentHealth;
+    public int maxHealth;
+    public int currentHealth;
     [SerializeField] GameObject healthContainer;
     [SerializeField]GameObject Health;
 
@@ -16,6 +17,11 @@ public class HealthManager : MonoBehaviour
         {
             Instantiate(Health, transform.position, Quaternion.identity, healthContainer.transform);
         }
+    }
+
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.L)){TakeDamage(1);}
+        if(currentHealth <= 0){SceneManager.LoadScene("Menu");}
     }
 
     public void TakeDamage(int damage)
