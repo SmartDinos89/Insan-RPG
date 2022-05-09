@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             move = Vector2.zero;
         }
 
-        if(Input.GetButtonDown("Interact"))
+        if(Input.GetButtonDown("Submit") && dialogueUi.isOpen == false)
         {
             Interactable?.Interact(this);
         }

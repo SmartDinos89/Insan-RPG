@@ -11,11 +11,9 @@ public class DialogueUi : MonoBehaviour
     public bool isOpen {get; private set;}
 
     
-    private ResponseHandler responseHandler;
     private TypewritterEffect typewritterEffect;
     private void Start()
     {
-        responseHandler = GetComponent<ResponseHandler>();
         typewritterEffect = GetComponent<TypewritterEffect>();
         CloseDialogueBox();
 
@@ -38,19 +36,12 @@ public class DialogueUi : MonoBehaviour
             yield return RunTypingEffect(dialogue);
             text.text = dialogue;
 
-            if (i == dialogueObject.Dialogue.Length -1 && dialogueObject.HasResponses) break;
+            if (i == dialogueObject.Dialogue.Length) break;
 
             yield return null;
             yield return new WaitUntil(() => Input.GetButtonDown("Submit"));
         }
-
-        if(dialogueObject.HasResponses){
-            responseHandler.ShowResponses(dialogueObject.Responses);
-        }
-        else
-        {
             CloseDialogueBox();
-        }
     }
 
     private IEnumerator RunTypingEffect(string dialogue)

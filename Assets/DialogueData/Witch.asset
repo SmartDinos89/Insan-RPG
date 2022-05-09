@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - Hey,
-  - Defenitely DO. NOT. go into the cave that would be a HORRIBLE idea
-  responses: []
+  - 'Defenitely DO. NOT. go into the cave to the west of the house.
+
+    That would
+    be a HORRIBLE idea'
   NPC_name: Witch
