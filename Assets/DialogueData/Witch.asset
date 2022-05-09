@@ -19,3 +19,4 @@ MonoBehaviour:
     That would
     be a HORRIBLE idea'
   NPC_name: Witch
+  portrait: {fileID: -1548542343388229337, guid: 2a7a3554660146b4c9ef2e47ac66b5f5, type: 3}

@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 public class DialogueUi : MonoBehaviour
 {
     [SerializeField]private GameObject dialogueBox;
+
+    [SerializeField]private Image portraitBox;
+
     [SerializeField]private TMP_Text nameText;
     [SerializeField]private TMP_Text text;
 
@@ -27,7 +30,13 @@ public class DialogueUi : MonoBehaviour
     }
 
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject){
+        if(dialogueObject.Portrait == null){
+            portraitBox.color = new Color(0,0,0,0);
+        } else {
+            portraitBox.color = new Color(255,255,255,255);
+        }
         nameText.text = dialogueObject.NPC_Name;
+        portraitBox.sprite = dialogueObject.Portrait;
         
         for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
