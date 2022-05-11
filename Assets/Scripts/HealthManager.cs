@@ -41,7 +41,7 @@ public class HealthManager : MonoBehaviour
             {
                 sr.material = matWhite;
                 currentHealth--;
-                Instantiate(explosion, transform);
+                 Instantiate(explosion, transform.position, Quaternion.identity);
                 Destroy(healthContainer.transform.GetChild(healthContainer.transform.childCount - 1).gameObject);
                 yield return new WaitForSeconds(.1f);
                 sr.material = matDefault;
