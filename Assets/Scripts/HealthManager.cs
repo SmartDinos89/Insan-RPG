@@ -10,7 +10,16 @@ public class HealthManager : MonoBehaviour
     [SerializeField] GameObject healthContainer;
     [SerializeField]GameObject Health;
 
+    private Material matWhite;
+    private Material matDefault;
+    private SpriteRenderer sr;
+
+    public ParticleSystem explosion;
+
     private void Start() {
+        sr = GetComponent<SpriteRenderer>();
+        matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
+        matDefault = sr.material;
         currentHealth = maxHealth;
 
         for (int i = 0; i < maxHealth; i++)
@@ -20,21 +29,25 @@ public class HealthManager : MonoBehaviour
     }
 
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.L)){TakeDamage(1);}
+        if(Input.GetKeyDown(KeyCode.L)){StartCoroutine(TakeDamage(1));}
         if(currentHealth <= 0){SceneManager.LoadScene("Menu");}
     }
 
-    public void TakeDamage(int damage)
+    public IEnumerator TakeDamage(int damage)
     {
         for (int i = 0; i < damage; i++)
         {
             if(currentHealth >= 0)
             {
-                currentHealth -= 1;
+                sr.material = matWhite;
+                currentHealth--;
+                Instantiate(explosion, transform);
                 Destroy(healthContainer.transform.GetChild(healthContainer.transform.childCount - 1).gameObject);
+                yield return new WaitForSeconds(.1f);
+                sr.material = matDefault;
             } else
             {
-                Debug.Log("Already Dead");
+                SceneManager.LoadScene("Outsside");
             }
         
         }
@@ -50,10 +63,6 @@ public class HealthManager : MonoBehaviour
             {
                 currentHealth += 1;
                 Instantiate(Health, transform.position, Quaternion.identity, healthContainer.transform);
-            }
-            else
-            {
-                Debug.Log("Max Health");
             }
 
         }

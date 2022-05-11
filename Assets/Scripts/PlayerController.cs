@@ -73,6 +73,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy")){
+            StartCoroutine(healthManager.TakeDamage(1));
+        }
+    }
+
     private IEnumerator Attack(){
         canMove = false;
         animator.SetTrigger("attack");

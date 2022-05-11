@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2819866224494628553}
   - component: {fileID: 2819866224494628558}
+  - component: {fileID: 1655610017524520166}
   m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
@@ -82,6 +83,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &1655610017524520166
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819866224494628552}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0016800503, y: 0.05211936}
+  m_Size: {x: 0.55952096, y: 0.250176}
+  m_Direction: 1
 --- !u!1 &2819866224563013377
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,9 +111,10 @@ GameObject:
   - component: {fileID: 2819866224563013383}
   - component: {fileID: 2819866224563013382}
   - component: {fileID: 7142284501612298708}
+  - component: {fileID: 7314650522049463408}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2819866224563013377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.09, y: -6.48, z: 0}
+  m_LocalPosition: {x: 0, y: 0.352, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2819866224494628553}
@@ -179,6 +197,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d086a91c6b40894bad5ed4f7a93fb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  health: 3
+  maxHealth: 3
+  stopRange: 0
+  detectRange: 0
+  targetPos: {fileID: 0}
 --- !u!95 &7142284501612298708
 Animator:
   serializedVersion: 3
@@ -198,3 +222,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &7314650522049463408
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819866224563013377}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.006705236, y: -0.089370765}
+  m_Size: {x: 1.1887027, y: 0.8327305}
+  m_Direction: 1
