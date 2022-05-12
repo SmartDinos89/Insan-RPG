@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public WeaponObject weapon;
 
     private float damage;
+    public Image weaponImage;
 
     Rigidbody2D body;
     Animator animator;
@@ -30,7 +32,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        damage = weapon.damage;
         healthManager = GetComponent<HealthManager>();
         canMove = true;
         animator = GetComponent<Animator>();
@@ -83,5 +84,12 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("attack");
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         canMove = true;
+    }
+
+    public void GetWeapon(WeaponObject wpn)
+    {
+        weapon = wpn;
+        weaponImage.sprite = wpn.weaponSprite;
+
     }
 }

@@ -206,7 +206,7 @@ MonoBehaviour:
   detectRange: 0
   targetPos: {fileID: 0}
   player: {fileID: 0}
-  cooldown: 0.5
+  cooldown: 1
 --- !u!95 &7142284501612298708
 Animator:
   serializedVersion: 3
