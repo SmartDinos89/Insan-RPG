@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
 
     public IInteractable Interactable { get; set; }
 
+    public WeaponObject weapon;
+
+    private float damage;
+
     Rigidbody2D body;
     Animator animator;
     float horizontal;
@@ -26,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        damage = weapon.damage;
         healthManager = GetComponent<HealthManager>();
         canMove = true;
         animator = GetComponent<Animator>();
@@ -70,13 +75,6 @@ public class PlayerController : MonoBehaviour
         }else
         {
             animator.SetBool("moving", false);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if(other.gameObject.CompareTag("Enemy")){
-            StartCoroutine(healthManager.TakeDamage(1));
         }
     }
 

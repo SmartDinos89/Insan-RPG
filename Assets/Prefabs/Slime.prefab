@@ -201,9 +201,12 @@ MonoBehaviour:
   speed: 2
   health: 3
   maxHealth: 3
+  damage: 1
   stopRange: 0
   detectRange: 0
   targetPos: {fileID: 0}
+  player: {fileID: 0}
+  cooldown: 0.5
 --- !u!95 &7142284501612298708
 Animator:
   serializedVersion: 3
