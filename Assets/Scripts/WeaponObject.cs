@@ -8,6 +8,6 @@ public class WeaponObject : ScriptableObject
     public int id;
     public string weaponName;
     public Sprite weaponSprite;
-    public float damage;
-    public float value;
+    public int damage;
+    public int value;
 }
