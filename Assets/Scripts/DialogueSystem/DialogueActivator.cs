@@ -32,6 +32,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerController playerController)
     {
+        text.text = string.Empty;
         playerController.DialogueUi.ShowDialogue(dialogueObject);
     }
 }
