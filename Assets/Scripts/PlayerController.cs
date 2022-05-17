@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour
     public IInteractable Interactable { get; set; }
 
     public WeaponObject weapon;
-
-    private float damage;
     public Image weaponImage;
 
     Rigidbody2D body;
@@ -32,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        GetWeapon(weapon);
         healthManager = GetComponent<HealthManager>();
         canMove = true;
         animator = GetComponent<Animator>();

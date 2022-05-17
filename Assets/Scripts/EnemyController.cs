@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Hitboxes"){
-            if(!hurting && player.GetComponent<PlayerController>().weapon != null)
+            if(!hurting)
             StartCoroutine(TakeDamage(player.GetComponent<PlayerController>().weapon.damage)); 
         }
     }
