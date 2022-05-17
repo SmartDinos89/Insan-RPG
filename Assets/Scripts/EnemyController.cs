@@ -40,12 +40,13 @@ public class EnemyController : MonoBehaviour
                 Attack(damage);
                 lastAttackedAt = Time.time;
             }
+            
         }
     }
     public IEnumerator TakeDamage(int damage)
     {
         hurting = true;
-        health--;
+        health -= damage;
         sr.material = matWhite;
         yield return new WaitForSeconds(.2f);
         sr.material = matDefault;
@@ -65,7 +66,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Hitboxes"){
-            if(!hurting)
+            if(!hurting && player.GetComponent<PlayerController>().weapon != null)
             StartCoroutine(TakeDamage(player.GetComponent<PlayerController>().weapon.damage)); 
         }
     }
