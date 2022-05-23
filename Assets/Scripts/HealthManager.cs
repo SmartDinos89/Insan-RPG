@@ -28,10 +28,6 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.L)){StartCoroutine(TakeDamage(1));}
-        if(currentHealth <= 0){SceneManager.LoadScene("Menu");}
-    }
 
     public IEnumerator TakeDamage(int damage)
     {
@@ -47,7 +43,7 @@ public class HealthManager : MonoBehaviour
                 sr.material = matDefault;
             } else
             {
-                SceneManager.LoadScene("Outsside");
+                SceneManager.LoadScene("Outside");
             }
         
         }

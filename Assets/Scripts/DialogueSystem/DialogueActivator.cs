@@ -32,6 +32,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerController playerController)
     {
+        playerController.DialogueUi.npc = gameObject;
         text.text = string.Empty;
         playerController.DialogueUi.ShowDialogue(dialogueObject);
     }

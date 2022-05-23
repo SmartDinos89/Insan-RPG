@@ -2,11 +2,15 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 public class DialogueUi : MonoBehaviour
 {
     [SerializeField]private GameObject dialogueBox;
 
     [SerializeField]private Image portraitBox;
+    UnityEvent EventToDo;
+
+    public GameObject npc;
 
     [SerializeField]private TMP_Text nameText;
     [SerializeField]private TMP_Text text;
@@ -17,6 +21,7 @@ public class DialogueUi : MonoBehaviour
     private TypewritterEffect typewritterEffect;
     private void Start()
     {
+        
         typewritterEffect = GetComponent<TypewritterEffect>();
         CloseDialogueBox();
 
@@ -30,6 +35,9 @@ public class DialogueUi : MonoBehaviour
     }
 
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject){
+        if(npc.TryGetComponent<NPCEvent>(out NPCEvent eventToDo)){
+            EventToDo = eventToDo.whatToDo;
+        }
         if(dialogueObject.Portrait == null){
             portraitBox.color = new Color(0,0,0,0);
         } else {
@@ -51,6 +59,8 @@ public class DialogueUi : MonoBehaviour
             yield return new WaitUntil(() => Input.GetButtonDown("Submit"));
         }
             CloseDialogueBox();
+            EventToDo.Invoke();
+           
     }
 
     private IEnumerator RunTypingEffect(string dialogue)

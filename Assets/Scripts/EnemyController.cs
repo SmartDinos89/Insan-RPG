@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     public Transform targetPos;
     public GameObject player;
 
+    private Rigidbody2D rb;
+
     private Material matWhite;
     private Material matDefault;
     private SpriteRenderer sr;
@@ -21,6 +23,8 @@ public class EnemyController : MonoBehaviour
     private float lastAttackedAt = -9999f;
 
     private void Start() {
+        Physics2D.IgnoreLayerCollision(3,7);
+        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
         matDefault = sr.material;
@@ -67,7 +71,9 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Hitboxes"){
             if(!hurting && player.GetComponent<PlayerController>().weapon != null)
+
             StartCoroutine(TakeDamage(player.GetComponent<PlayerController>().weapon.damage)); 
+            
         }
     }
 

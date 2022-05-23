@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: Witch
   m_EditorClassIdentifier: 
   dialogue:
-  - Hey,
-  - 'Defenitely DO. NOT. go into the cave to the west of the house.
+  - 'Hey, I''m gonna head for the capital now.
 
-    That would
-    be a HORRIBLE idea'
+'
+  - Remenber, if you want to get there too, you have to get throught the forest to
+    the nearest city where you can use the teleporter.
+  - Also,
+  - If you want to get throught the forest, I heard there might be something helpful
+    in the cave to the WEST.
+  - Apparently it was the hideout of some old adventurer, so you might find some
+    good stuff in there.
   NPC_name: Witch
-  portrait: {fileID: -1548542343388229337, guid: 2a7a3554660146b4c9ef2e47ac66b5f5, type: 3}
+  portrait: {fileID: 21300000, guid: f07a2b3150fe72e4280cc3f722d86cde, type: 3}
+  eventToDo:
+    m_PersistentCalls:
+      m_Calls: []

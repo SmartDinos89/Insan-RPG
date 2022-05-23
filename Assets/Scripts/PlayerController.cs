@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DialogueUi dialogueUi;
     private HealthManager healthManager;
 
+    private AudioSource audioPlayer;
+
     public DialogueUi DialogueUi => dialogueUi;
 
     public IInteractable Interactable { get; set; }
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         GetWeapon(weapon);
         healthManager = GetComponent<HealthManager>();
+        audioPlayer = GetComponent<AudioSource>();
         canMove = true;
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
@@ -46,7 +49,7 @@ public class PlayerController : MonoBehaviour
         
         move = new Vector2(horizontal, vertical).normalized;
 
-        if(dialogueUi.isOpen || !canMove)
+        if(dialogueUi.isOpen)
         {
             move = Vector2.zero;
         }
@@ -65,24 +68,32 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        body.velocity = move * runSpeed;
+        if(canMove && move != Vector2.zero){
+            body.velocity = move * runSpeed;
 
-        if(move != Vector2.zero)
-        {
             animator.SetFloat("horizontal", horizontal);
             animator.SetFloat("vertical", vertical);
             animator.SetBool("moving", true);
         }else
         {
+            body.velocity = Vector2.zero;
             animator.SetBool("moving", false);
         }
+        
     }
 
     private IEnumerator Attack(){
         canMove = false;
-        animator.SetTrigger("attack");
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        animator.SetBool("attack", true);
+        yield return new WaitForSeconds(.2f);
+        animator.SetBool("attack", false);
         canMove = true;
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioPlayer.clip = clip;
+        audioPlayer.Play();
     }
 
     public void GetWeapon(WeaponObject wpn)

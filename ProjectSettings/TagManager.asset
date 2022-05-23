@@ -10,11 +10,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ECollision
   - Water
   - UI
   - Post
-  - 
+  - Player
   - 
   - 
   - 
