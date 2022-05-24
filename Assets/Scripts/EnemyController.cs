@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float speed = 1.0f;
-    public int health = 3;
-    public int maxHealth = 3;
-    public int damage = 1;
-    public float stopRange;
-    public float detectRange;
-    public Transform targetPos;
-    public GameObject player;
+    [Header("Parameters")]
+    [SerializeField]private float speed = 1.0f;
+    [SerializeField]private int health = 3;
+    [SerializeField]private int maxHealth = 3;
+    [SerializeField]private int damage = 1;
+    [SerializeField]private float stopRange;
+    [SerializeField]private float detectRange;
+    [SerializeField]private float attackCooldown = 1f; //seconds
+    [SerializeField]private GameObject reward;
+    [SerializeField]private float rewardExp;
+    private Transform targetPos;
+    private GameObject player;
 
     private Rigidbody2D rb;
 
@@ -19,7 +23,7 @@ public class EnemyController : MonoBehaviour
     private Material matDefault;
     private SpriteRenderer sr;
     private bool hurting;
-    public float cooldown = 1f; //seconds
+
     private float lastAttackedAt = -9999f;
 
     private void Start() {
@@ -27,34 +31,42 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
-        matDefault = sr.material;
         player = GameObject.FindGameObjectWithTag("Player");
+        matDefault = sr.material;
         targetPos = player.transform;
         health = maxHealth;
         hurting = false;
     }
-    private void Update() {
+    private void FixedUpdate() {
+        Vector3 dir = (player.transform.position - rb.transform.position).normalized;
         // Check if the position of the cube and sphere are approximately equal.
-        if (Vector3.Distance(transform.position, targetPos.position) >= stopRange && Vector3.Distance(transform.position, targetPos.position) <= detectRange)
+        if(!hurting){
+            if (Vector3.Distance(transform.position, targetPos.position) >= stopRange && Vector3.Distance(transform.position, targetPos.position) <= detectRange)
         {
-            var step =  speed * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, targetPos.position, step);
+            rb.MovePosition(rb.transform.position + dir * speed * Time.fixedDeltaTime);
         }else if(Vector3.Distance(transform.position, targetPos.position) <= stopRange && Vector3.Distance(transform.position, targetPos.position) <= detectRange){
-            if (Time.time > lastAttackedAt + cooldown) {
+            if (Time.time > lastAttackedAt + attackCooldown) {
                 Attack(damage);
                 lastAttackedAt = Time.time;
             }
             
         }
+        }
     }
-    public IEnumerator TakeDamage(int damage)
+    private IEnumerator TakeDamage(int damage)
     {
         hurting = true;
         health -= damage;
         sr.material = matWhite;
-        yield return new WaitForSeconds(.2f);
+        Vector3 direction = transform.position - targetPos.position;
+        rb.AddForce(direction * player.GetComponent<PlayerController>().knockBackStrength, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(.09f);
         sr.material = matDefault;
         if(health <= 0){
+            Instantiate(reward, transform.position, Quaternion.identity);
+            player.GetComponent<PlayerController>().addXP(rewardExp * (player.GetComponent<PlayerController>().level + 1));
+            Debug.Log("Player has " + player.GetComponent<PlayerController>().exp + " Exp.");
+            Debug.Log("Player is Level: " + player.GetComponent<PlayerController>().level + ".");
             Destroy(gameObject);
         }
         hurting = false;

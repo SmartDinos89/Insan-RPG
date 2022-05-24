@@ -15,7 +15,7 @@ public class DialogueUi : MonoBehaviour
     [SerializeField]private TMP_Text nameText;
     [SerializeField]private TMP_Text text;
 
-    public bool isOpen {get; private set;}
+    public bool isOpen;
 
     
     private TypewritterEffect typewritterEffect;

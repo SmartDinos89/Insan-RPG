@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Hitboxes
+  - ShopItems
+  - Canvas
   layers:
   - Default
   - TransparentFX

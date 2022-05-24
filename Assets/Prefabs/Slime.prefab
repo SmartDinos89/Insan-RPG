@@ -205,9 +205,9 @@ MonoBehaviour:
   damage: 1
   stopRange: 0
   detectRange: 0
-  targetPos: {fileID: 0}
-  player: {fileID: 0}
-  cooldown: 1
+  attackCooldown: 1
+  reward: {fileID: 0}
+  rewardExp: 0
 --- !u!95 &7142284501612298708
 Animator:
   serializedVersion: 3
@@ -251,7 +251,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2819866224563013377}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
