@@ -8,7 +8,7 @@ public class DialogueUi : MonoBehaviour
     [SerializeField]private GameObject dialogueBox;
 
     [SerializeField]private Image portraitBox;
-    UnityEvent EventToDo;
+    public UnityEvent EventToDo;
 
     public GameObject npc;
 
@@ -35,7 +35,7 @@ public class DialogueUi : MonoBehaviour
     }
 
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject){
-        if(npc.TryGetComponent<NPCEvent>(out NPCEvent eventToDo)){
+        if(npc != null && npc.TryGetComponent<NPCEvent>(out NPCEvent eventToDo)){
             EventToDo = eventToDo.whatToDo;
         }
         if(dialogueObject.Portrait == null){
@@ -59,8 +59,9 @@ public class DialogueUi : MonoBehaviour
             yield return new WaitUntil(() => Input.GetButtonDown("Submit"));
         }
             CloseDialogueBox();
-            EventToDo.Invoke();
-           
+            EventToDo.Invoke();    
+            npc = null;
+            EventToDo = null;
     }
 
     private IEnumerator RunTypingEffect(string dialogue)
