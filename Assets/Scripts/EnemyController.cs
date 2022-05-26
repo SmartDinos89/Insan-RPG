@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]private float attackCooldown = 1f; //seconds
     [SerializeField]private GameObject reward;
     [SerializeField]private float rewardExp;
+    [SerializeField]private Animator animator;
     private Transform targetPos;
     private GameObject player;
 
@@ -40,17 +41,28 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate() {
         Vector3 dir = (player.transform.position - rb.transform.position).normalized;
         // Check if the position of the cube and sphere are approximately equal.
-        if(!hurting){
-            if (Vector3.Distance(transform.position, targetPos.position) >= stopRange && Vector3.Distance(transform.position, targetPos.position) <= detectRange)
+        if(!hurting)
         {
-            rb.MovePosition(rb.transform.position + dir * speed * Time.fixedDeltaTime);
-        }else if(Vector3.Distance(transform.position, targetPos.position) <= stopRange && Vector3.Distance(transform.position, targetPos.position) <= detectRange){
-            if (Time.time > lastAttackedAt + attackCooldown) {
+            if (Vector3.Distance(transform.position, targetPos.position) >= stopRange && Vector3.Distance(transform.position, targetPos.position) <= detectRange)
+            {
+                animator.SetBool("moving", true);
+            rb.AddForce(dir * speed * Time.fixedDeltaTime);
+            }
+            else if(Vector3.Distance(transform.position, targetPos.position) <= stopRange && Vector3.Distance(transform.position, targetPos.position) <= detectRange)
+            {
+                animator.SetBool("moving", false);
+                rb.velocity = Vector2.zero;
+            if (Time.time > lastAttackedAt + attackCooldown)
+            {
                 Attack(damage);
                 lastAttackedAt = Time.time;
             }
-            
-        }
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+                animator.SetBool("moving", false);
+            }
         }
     }
     private IEnumerator TakeDamage(int damage)
