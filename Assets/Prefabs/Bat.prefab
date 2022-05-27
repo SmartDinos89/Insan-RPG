@@ -198,15 +198,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d086a91c6b40894bad5ed4f7a93fb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 225
   health: 3
   maxHealth: 3
   damage: 1
-  stopRange: 0
-  detectRange: 0
+  stopRange: 1
+  detectRange: 7
   attackCooldown: 1
   reward: {fileID: 4805943820060082497, guid: 82e096c230c257c4aa49a3f493741858, type: 3}
   rewardExp: 2
+  animator: {fileID: 0}
 --- !u!70 &7314650522049463408
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

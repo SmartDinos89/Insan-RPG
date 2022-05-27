@@ -14,13 +14,15 @@ public class Collectable : MonoBehaviour
     [Range(0, 9999)]public int value;
 
     private void Start() {
-        value =  Random.Range(1, 15);
+        player = GameObject.FindGameObjectWithTag("Player");
+        
     }
     private void OnTriggerEnter2D(Collider2D other) {
+        HealthManager healthManager = player.GetComponent<HealthManager>();    
+        PlayerController playerController = player.GetComponent<PlayerController>();
+        value = playerController.level * Random.Range(1,15);
         if(other.CompareTag("Player")){
-            player = other.gameObject;
-            HealthManager healthManager = player.GetComponent<HealthManager>();    
-            PlayerController playerController = player.GetComponent<PlayerController>();
+
             switch(itemType){
                 case ItemType.healing:
 

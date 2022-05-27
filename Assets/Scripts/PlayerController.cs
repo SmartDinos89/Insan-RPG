@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     float vertical;
 
     public float exp = 0;
-    public float level;
+    public int level;
     [SerializeField]private RectTransform expBar;
     [SerializeField]private TMP_Text levelCounter;
     
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         canMove = true;
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
-        addXP(0f);
+        addXP(1f);
     }
 
     void Update()
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
 
     public void addXP(float experience){
         exp += experience;
-        level = Mathf.Floor(Mathf.Pow(exp, 0.4f));
+        level = (int)Mathf.Pow(exp, 0.4f);
         levelCounter.text = "Lvl: " + level;
         float expForNextLevel = Mathf.Pow((level + 1f), 2.5f) - Mathf.Pow((level), 2.5f);
         float expToNextLevel = exp - Mathf.Pow((level), 2.5f);

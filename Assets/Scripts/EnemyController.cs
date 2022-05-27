@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3,7);
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
         player = GameObject.FindGameObjectWithTag("Player");
         matDefault = sr.material;
@@ -45,6 +46,8 @@ public class EnemyController : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, targetPos.position) >= stopRange && Vector3.Distance(transform.position, targetPos.position) <= detectRange)
             {
+                animator.SetFloat("xVel", rb.velocity.x);
+                animator.SetFloat("yVel", rb.velocity.y);
                 animator.SetBool("moving", true);
             rb.AddForce(dir * speed * Time.fixedDeltaTime);
             }
