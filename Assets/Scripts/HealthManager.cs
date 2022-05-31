@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HealthManager : MonoBehaviour
+public class HealthManager : MonoBehaviour , IDataPersistance
 {
-    public float maxHealth;
-    public float currentHealth;
-    [SerializeField] private RectTransform HealthBar;
+    public float maxHealth = 10;
+    public float currentHealth = 10;
+    public RectTransform HealthBar;
+    [HideInInspector]
+    public Vector3 healthBarScale;
 
     private Material matWhite;
     private Material matDefault;
@@ -19,16 +21,29 @@ public class HealthManager : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
         matDefault = sr.material;
-        currentHealth = maxHealth;
+        Heal(0f);
     }
 
+    public void LoadData(GameData data)
+    {
+        this.maxHealth = data.maxHealth;
+        this.currentHealth = data.currentHealth;
+
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.maxHealth = this.maxHealth;
+        data.currentHealth = this.currentHealth;
+
+    }
 
     public IEnumerator TakeDamage(float damage)
     {
             if(currentHealth > damage)
             {
                 currentHealth -= damage;
-                HealthBar.localScale = new Vector3(currentHealth/maxHealth, transform.localScale.y, transform.localScale.z);
+                healthBarScale = new Vector3(currentHealth/maxHealth, transform.localScale.y, transform.localScale.z);
+                HealthBar.localScale = healthBarScale;
                 sr.material = matWhite;
                 Instantiate(explosion, transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(.1f);
@@ -36,7 +51,8 @@ public class HealthManager : MonoBehaviour
             } else
             {
                 currentHealth = 0;
-                HealthBar.localScale = new Vector3(currentHealth/maxHealth, transform.localScale.y, transform.localScale.z);
+                healthBarScale = new Vector3(currentHealth/maxHealth, transform.localScale.y, transform.localScale.z);
+                HealthBar.localScale = healthBarScale;
                 sr.material = matWhite;
                 SceneManager.LoadScene("Outside");
             }

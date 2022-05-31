@@ -80,8 +80,6 @@ public class EnemyController : MonoBehaviour
         if(health <= 0){
             Instantiate(reward, transform.position, Quaternion.identity);
             player.GetComponent<PlayerController>().addXP(rewardExp * (player.GetComponent<PlayerController>().level + 1));
-            Debug.Log("Player has " + player.GetComponent<PlayerController>().exp + " Exp.");
-            Debug.Log("Player is Level: " + player.GetComponent<PlayerController>().level + ".");
             Destroy(gameObject);
         }
         hurting = false;

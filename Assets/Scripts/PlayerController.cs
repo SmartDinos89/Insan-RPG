@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour , IDataPersistance
 {
 
     [SerializeField] private DialogueUi dialogueUi;
@@ -16,8 +17,8 @@ public class PlayerController : MonoBehaviour
     public DialogueUi DialogueUi => dialogueUi;
 
     public IInteractable Interactable { get; set; }
-    public int coins;
-    public TMP_Text coinCount;
+    public long coins;
+    public TMP_Text coinText;
 
     public WeaponObject weapon;
     public Image weaponImage;
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
     float horizontal;
     float vertical;
 
-    public float exp = 0;
+    public float exp;
     public int level;
     [SerializeField]private RectTransform expBar;
     [SerializeField]private TMP_Text levelCounter;
@@ -39,17 +40,36 @@ public class PlayerController : MonoBehaviour
     [Header("Params")]
     public float runSpeed = 20.0f;
     public float knockBackStrength = 1f;
-
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
         GetWeapon(weapon);
         healthManager = GetComponent<HealthManager>();
         audioPlayer = GetComponent<AudioSource>();
         canMove = true;
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
-        addXP(1f);
+        if(exp == 0) {addXP(1f);} else {addXP(0f);}
+        coinText.text = coins.ToString();
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.coins = data.coinCount;
+        this.transform.position = data.playerpos;
+        this.exp = data.exp;
+        this.level = data.level;
+        if(data.weapon != null)
+        {
+            this.weapon = data.weapon;
+        }
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.coinCount = this.coins;
+        data.playerpos = this.transform.position;
+        data.exp = this.exp;
+        data.level = this.level;
+        data.weapon = this.weapon;
     }
 
     void Update()
@@ -75,10 +95,6 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Attack());
         }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            addCoins(100);
-        }
 
     }
 
@@ -86,6 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         if(canMove && move != Vector2.zero){
             body.velocity = move * runSpeed;
+
 
             animator.SetFloat("horizontal", horizontal);
             animator.SetFloat("vertical", vertical);
@@ -118,9 +135,20 @@ public class PlayerController : MonoBehaviour
         weaponImage.sprite = wpn.weaponSprite;
 
     }
-    public void addCoins(int value){
+    public void addCoins(long value){
         coins += value;
-        coinCount.text = coins.ToString();
+        if(coins <= 0){coins = 0;}
+        if(coins >= 1000000001){coins = 1000000001;}
+
+        if(coins >= 1000000000)
+        {
+            coinText.text = "\u221E";
+        }
+        else
+        {
+            coinText.text = coins.ToString();
+        }
+        
     }
 
     public void addXP(float experience){

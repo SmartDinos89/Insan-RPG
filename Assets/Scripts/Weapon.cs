@@ -5,12 +5,12 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public WeaponObject weapon;
-
+    public GameObject DeactivateParent;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player")){
             other.GetComponent<PlayerController>().GetWeapon(weapon);
-            Destroy(gameObject);
+            transform.SetParent(DeactivateParent.transform);
         }
     }
 }

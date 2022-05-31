@@ -8,11 +8,13 @@ public class ButtonScript : MonoBehaviour
     public Animator animatior;
     public void ChangeScene(string name)
     {
+        Time.timeScale = 1f;
         StartCoroutine(NextLevel(name));
     }
 
     public void StopPlay()
     {
+        Time.timeScale = 1f;
         StartCoroutine(StopPlaying());
     }
 
