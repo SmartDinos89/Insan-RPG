@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Witch
   m_EditorClassIdentifier: 
   dialogue:
-  - 'Hey, I''m gonna head for the capital now.
+  - 'Your Imperial Princes!! I''m gonna head for the capital now.
 
 '
   - Remenber, if you want to get there too, you have to get throught the forest to
-    the nearest city where you can use the teleporter.
+    the nearest city where a carige is waitin gto take you to the capital.
   - Also,
   - If you want to get throught the forest, I heard there might be something helpful
     in the cave to the WEST.
