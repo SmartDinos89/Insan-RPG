@@ -127,7 +127,7 @@ SpriteRenderer:
   m_SortingLayerID: 742857219
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7152930139536384079, guid: 449f4683ed2b12b499bc6d2fb5811639, type: 3}
+  m_Sprite: {fileID: -9165533483413931545, guid: c3e7541a93429054190ab622364d8484, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -191,10 +191,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueUi: {fileID: 0}
+  coins: 0
+  coinText: {fileID: 0}
   weapon: {fileID: 11400000, guid: 6e3a24ae9fb3b48459ba2f579bb48ab1, type: 2}
   weaponImage: {fileID: 0}
+  exp: 0
+  level: 0
+  expBar: {fileID: 0}
+  levelCounter: {fileID: 0}
   canMove: 0
   runSpeed: 5
+  knockBackStrength: 1
 --- !u!61 &1752112490740418233
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -212,7 +219,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -233,10 +240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375bfd91e23aa914892a44289c9494a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  currentHealth: 0
-  healthContainer: {fileID: 0}
-  Health: {fileID: 309330277231003809, guid: cfdcb4bb330e8b64085bf8d5b25bd48e, type: 3}
+  maxHealth: 10
+  currentHealth: 10
+  HealthBar: {fileID: 0}
+  healthBarScale: {x: 0, y: 0, z: 0}
   explosion: {fileID: 0}
 --- !u!82 &3001948483242403599
 AudioSource:

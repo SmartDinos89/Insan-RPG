@@ -24,7 +24,4 @@ MonoBehaviour:
   - Apparently it was the hideout of some old adventurer, so you might find some
     good stuff in there.
   NPC_name: Witch
-  portrait: {fileID: 21300000, guid: f07a2b3150fe72e4280cc3f722d86cde, type: 3}
-  eventToDo:
-    m_PersistentCalls:
-      m_Calls: []
+  portrait: {fileID: 2614763117411386133, guid: 1b419fb2d8aee704ead3ef471c486a52, type: 3}

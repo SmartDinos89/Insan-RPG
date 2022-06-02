@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Glass Sword
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a16f02149c8e9a04b90312f33c45cee7, type: 2}
-  m_sharedMaterial: {fileID: 1066232815992323781, guid: a16f02149c8e9a04b90312f33c45cee7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6f2efb2ef5501454a9ce3c21f97338c2, type: 2}
+  m_sharedMaterial: {fileID: -4516182650881609898, guid: 6f2efb2ef5501454a9ce3c21f97338c2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2f494ba3e34a87e4183986aabc67de8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea03a927bc15a6c44af1dc868be4fb53, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -277,8 +277,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 175
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a16f02149c8e9a04b90312f33c45cee7, type: 2}
-  m_sharedMaterial: {fileID: 1066232815992323781, guid: a16f02149c8e9a04b90312f33c45cee7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6f2efb2ef5501454a9ce3c21f97338c2, type: 2}
+  m_sharedMaterial: {fileID: -4516182650881609898, guid: 6f2efb2ef5501454a9ce3c21f97338c2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -711,8 +711,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Buy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a16f02149c8e9a04b90312f33c45cee7, type: 2}
-  m_sharedMaterial: {fileID: 1066232815992323781, guid: a16f02149c8e9a04b90312f33c45cee7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6f2efb2ef5501454a9ce3c21f97338c2, type: 2}
+  m_sharedMaterial: {fileID: -4516182650881609898, guid: 6f2efb2ef5501454a9ce3c21f97338c2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

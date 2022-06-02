@@ -15,7 +15,7 @@ public class GameData
     public GameData()
     {
         this.coinCount = 0;
-        this.playerpos = new Vector3(-76.5f,35f,0f);
+        this.playerpos = new Vector3(-82.0f,27.0f,0.0f);
         this.maxHealth = 10.0f;
         this.currentHealth = 10.0f;
         this.exp = 0.0f;

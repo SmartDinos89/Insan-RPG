@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour , IDataPersistance
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
         if(exp == 0) {addXP(1f);} else {addXP(0f);}
+        addCoins(0);
         coinText.text = coins.ToString();
     }
 
